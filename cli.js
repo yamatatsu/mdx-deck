@@ -5,7 +5,8 @@ const open = require('react-dev-utils/openBrowser')
 const chalk = require('chalk')
 const ok = require('ok-cli')
 const remark = {
-  emoji: require('remark-emoji')
+  emoji: require('remark-emoji'),
+  externalLinks: require('remark-external-links')
 }
 
 const config = require('pkg-conf').sync('mdx-deck')
@@ -45,7 +46,10 @@ const getConfig = conf => {
           loader: require.resolve('./lib/loader.js'),
           options: {
             mdPlugins: [
-              remark.emoji
+              remark.emoji,
+              [ remark.externalLinks, {
+                target: '_blank'
+              } ]
             ]
           }
         }
