@@ -11,6 +11,7 @@ import Dots from './Dots'
 import Root from './Root'
 import Presenter from './Presenter'
 import GoogleFonts from './GoogleFonts'
+import Swipe from './Swipe'
 
 import defaultTheme from './themes'
 import defaultComponents from './components'
@@ -60,7 +61,7 @@ export class SlideDeck extends React.Component {
     length: this.props.slides.length,
     index: 0,
     mode: modes.normal,
-    notes: {}
+    notes: {},
   }
 
   update = fn => this.setState(fn)
@@ -112,6 +113,10 @@ export class SlideDeck extends React.Component {
 
   handleStorageChange = e => {
     const index = parseInt(e.newValue, 10)
+    this.goTo(index)
+  }
+
+  goTo = index => {
     this.setState({ index })
   }
 
@@ -168,6 +173,7 @@ export class SlideDeck extends React.Component {
     const context = {
       ...this.state,
       slides,
+      goTo: this.goTo,
       addNotes: this.addNotes
     }
 
@@ -179,34 +185,36 @@ export class SlideDeck extends React.Component {
               ...defaultComponents,
               ...components
             }}>
-            <Provider {...this.state}>
-              <Wrapper
-                {...this.state}
-                slides={slides}
-                width={width}
-                height={height}>
-                <GoogleFonts />
-                <Carousel index={index}>
-                  {slides.map((Component, i) => (
-                    <Slide
-                      key={i}
-                      id={'slide-' + i}
-                      index={i}>
-                      <Component />
-                    </Slide>
-                  ))}
-                </Carousel>
-                <Dots
-                  mt={-32}
-                  mx='auto'
-                  index={index}
-                  length={length}
-                  onClick={index => {
-                    this.setState({ index })
-                  }}
-                />
-              </Wrapper>
-            </Provider>
+            <Swipe>
+              <Provider {...this.state}>
+                <Wrapper
+                  {...this.state}
+                  slides={slides}
+                  width={width}
+                  height={height}>
+                  <GoogleFonts />
+                  <Carousel index={index}>
+                    {slides.map((Component, i) => (
+                      <Slide
+                        key={i}
+                        id={'slide-' + i}
+                        index={i}>
+                        <Component />
+                      </Slide>
+                    ))}
+                  </Carousel>
+                  <Dots
+                    mt={-32}
+                    mx='auto'
+                    index={index}
+                    length={length}
+                    onClick={index => {
+                      this.setState({ index })
+                    }}
+                  />
+                </Wrapper>
+              </Provider>
+            </Swipe>
           </MDXProvider>
         </ThemeProvider>
       </ContextProvider>
