@@ -14,8 +14,9 @@ export const Presenter = ({
   slides = [],
   mode,
   notes = {},
-  update,
   step,
+  update,
+  togglePresentation,
   ...props
 }) => {
   const Next = slides[index + 1]
@@ -75,6 +76,9 @@ export const Presenter = ({
       <Flex mt='auto' px={3} py={3}>
         <Mono>Slide {index} of {length}</Mono>
         <Box mx='auto' />
+        <button onClick={togglePresentation}>
+          PresentationAPI
+        </button>
         <Timer />
       </Flex>
     </Flex>

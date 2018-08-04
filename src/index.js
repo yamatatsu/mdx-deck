@@ -168,6 +168,44 @@ export class SlideDeck extends React.Component {
     }))
   }
 
+  presentation = null
+
+  handlePresentationMessage = data => {
+    switch (data.key) {
+      case MDX_SLIDE_INDEX:
+        this.setState({ index: data.index })
+        break
+      case MDX_SLIDE_STEP:
+        this.setState({ step: data.step })
+        break
+    }
+  }
+
+  startPresentation = () => {
+    if (window.PresentationRequest) {
+      const req = new PresentationRequest([
+        window.location.href
+      ])
+      req.start().then(connection => {
+        this.presentation = connection
+        this.presentation.addEventListener('message', this.handlePresentationMessage)
+      })
+    }
+  }
+
+  stopPresentation = () => {
+    this.presentation.removeEventListener('message', this.handlePresentationMessage)
+    this.presentation.terminate()
+  }
+
+  togglePresentation = () => {
+    if (this.presentation) {
+      this.stopPresentation()
+    } else {
+      this.startPresentation()
+    }
+  }
+
   componentDidMount () {
     document.body.addEventListener('keydown', this.handleKeyDown)
     window.addEventListener('hashchange', this.handleHashChange)
@@ -238,7 +276,8 @@ export class SlideDeck extends React.Component {
                   slides={slides}
                   width={width}
                   height={height}
-                  update={this.update}>
+                  update={this.update}
+                  togglePresentation={this.togglePresentation}>
                   <GoogleFonts />
                   <Carousel index={index}>
                     {slides.map((Component, i) => (
