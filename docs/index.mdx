@@ -1,7 +1,8 @@
 export { future as theme } from '../themes'
 import { Image, Notes, Appear } from '../dist'
 import { Invert, Split, SplitRight } from '../layouts'
-import Counter from './Counter'
+import Counter from './components/Counter'
+import { withTheme } from './components/layouts'
 
 # mdx-deck
 
@@ -21,17 +22,28 @@ import Box from 'superbox'
   Import React components
 </Box>
 ---
-
-- Make bulleted lists
-- To help make your point
-
----
-
 ## Getting Started
 
 1. `npm i -D mdx-deck`
 2. Write some markdown and JSX
 3. Present
+
+---
+export default Invert
+
+# :sunglasses:
+[GitHub](https://github.com/jxnblk/mdx-deck)
+
+---
+
+# Examples
+
+---
+
+# H1 Heading
+## H2 Heading
+### H3 Heading
+Text
 
 ---
 
@@ -60,7 +72,7 @@ import Box from 'superbox'
 
 <ul>
   <Appear>
-    <li>One</li>
+    <li>One at a time</li>
     <li>Two</li>
     <li>Three</li>
     <li>Four</li>
@@ -96,6 +108,8 @@ Inline image
 
 ---
 
+### Tables
+
 Prop | Type | Description
 ---|---|---
 `width` | number, string, or array | sets element width
@@ -103,7 +117,30 @@ Prop | Type | Description
 `bg` | string | sets background color
 
 ---
-export default Invert
 
-# Get started :sunglasses:
-[GitHub](https://github.com/jxnblk/mdx-deck)
+# Themes
+
+---
+![](images/big.png)
+---
+![](images/book.png)
+---
+![](images/code.png)
+---
+![](images/comic.png)
+---
+![](images/condensed.png)
+---
+![](images/dark.png)
+---
+![](images/future.png)
+---
+![](images/hack.png)
+---
+![](images/notes.png)
+---
+![](images/script.png)
+---
+![](images/swiss.png)
+---
+![](images/yellow.png)
