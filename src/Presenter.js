@@ -7,6 +7,7 @@ import Slide from './Slide'
 import Root from './Root'
 import Timer from './Timer'
 import Mono from './Mono'
+import Button from './Button'
 
 export const Presenter = ({
   index,
@@ -75,6 +76,14 @@ export const Presenter = ({
       <Flex mt='auto' px={3} py={3}>
         <Mono>Slide {index} of {length}</Mono>
         <Box mx='auto' />
+        <Button
+          onClick={e => {
+            const { pathname } = window.location
+            window.open(pathname, '_blank')
+          }}>
+          New Window
+        </Button>
+        <Box mx={3} />
         <Timer />
       </Flex>
     </Flex>
