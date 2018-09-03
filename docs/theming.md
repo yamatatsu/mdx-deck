@@ -49,6 +49,19 @@ export default {
 
 ### Google Fonts
 
+To use webfonts, use the [`Head`](components.md#head) component in your mdx file.
+
+```mdx
+import { Head } from 'mdx-deck'
+
+<Head>
+  <link
+    rel='stylesheet'
+    href='https://fonts.googleapis.com/css?family=Roboto+Mono'
+  />
+</Head>
+```
+
 To use webfonts, mdx-deck will attempt to add `<link>` tags for any font from Google Fonts.
 To load webfonts from other sources, use a custom [Provider component](advanced.md#custom-provider-component) to add custom `<link>` tags.
 
