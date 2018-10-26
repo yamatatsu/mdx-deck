@@ -1,0 +1,29 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _base = require('./base');
+
+var _base2 = _interopRequireDefault(_base);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var blue = '#00cdf1';
+var black = '#003d48';
+var link = '#0800e3';
+
+exports.default = _extends({}, _base2.default, {
+  font: '"Source Code Pro", monospace',
+  monospace: '"Source Code Pro", monospace',
+  colors: {
+    text: black,
+    background: blue,
+    link: link,
+    pre: blue,
+    preBackground: black
+  }
+});
